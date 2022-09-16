@@ -32,7 +32,16 @@ const client = new ApolloClient({
 function App() {
     return (
         <ApolloProvider>
-            <Router></Router>
+            <Router>
+                <div>
+                    <Nav />
+                    <Routes>
+                        
+                    </Routes>
+                </div>
+            </Router>
         </ApolloProvider>
     );
 }
+
+export default App;
