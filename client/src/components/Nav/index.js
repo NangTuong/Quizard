@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
 function Nav() {
+
     const logout = event => {
         event.preventDefault();
         Auth.logout();
@@ -27,6 +28,7 @@ function Nav() {
             </nav>
         )
     }
+
 
 
 export default Nav;

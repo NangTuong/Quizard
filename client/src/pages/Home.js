@@ -1,9 +1,12 @@
-const Home = () => {
-    return(
-        <main>
-            
-        </main>
-    );
-};
 
-export default Home;
+import react from 'react';
+
+
+function Home() {
+    return (
+        <div>
+            <Quizzes></Quizzes>
+        </div>
+    );
+}
+

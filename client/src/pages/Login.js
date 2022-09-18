@@ -18,25 +18,21 @@ const Login = (props) => {
   };
 
   // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
 
-    try {
-      const { data } = await login({
-        variables: { ...formState }
-      });
+const handleFormSubmit = async event => {
+  event.preventDefault();
 
-      Auth.login(data.login.token);
-    }catch (e) {
-      console.error(e);
-    }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: '',
+  try {
+    const { data } = await login({
+      variables: { ...formState }
     });
-  };
+  
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 
   return (
     <main className='flex-row justify-center mb-4'>
@@ -75,4 +71,6 @@ const Login = (props) => {
   );
 };
 
+
 export default Login;
+
