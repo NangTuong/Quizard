@@ -26,19 +26,6 @@ const Profile = () => {
   
    if (!user?.username) {
     return (
-<<<<<<< HEAD
-        <div className="container">
-            <h1>Name placeholder</h1>
-            <h2></h2>
-            <div>
-                Loop over the quizzes here when backend is set up -CA
-            </div>
-        </div>
-    );
-}
-
-export default Profile;
-=======
       <h4>
         You need to be logged in to see this page. Use the navigation links above to sign up or log in!
       </h4>
@@ -67,4 +54,3 @@ export default Profile;
   
   export default Profile;
 
->>>>>>> 08fa2f2860e567ee2be52d607925d527b978d07e
