@@ -1,39 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 
-import Auth from '../../utils/auth';
+import Banner from '../../images/header.png'
+import Nav from '../Nav';
 
-const Header = () => {
-  const logout = event => {
-    event.preventDefault();
-    Auth.logout();
-  };
-
-  return (
-    <header className="bg-secondary mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link to="/">
-          <h1 className='text-dark'>Quizard</h1>
-        </Link>
-
-        <nav className="text-center">
-          {Auth.loggedIn() ? (
-            <>
-              <Link to="/profile">Me</Link>
-              <a href="/" onClick={logout}>
-                Logout
-              </a>
-            </>
-          ) : (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-            </>
-          )}
-        </nav>
-      </div>
-    </header>
-  );
+function Header() {
+    return(
+        <header>
+            <img src={Banner} alt='Quizard banner with two wizards'></img>
+            <Nav></Nav>
+        </header>
+    )
 };
 
 export default Header;
+
