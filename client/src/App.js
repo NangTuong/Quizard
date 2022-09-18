@@ -36,7 +36,6 @@ function App() {
                 <div>
                     <Nav />
                     <Routes>
-                        
                     </Routes>
                 </div>
             </Router>
