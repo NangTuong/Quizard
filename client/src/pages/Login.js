@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
+
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,6 +18,7 @@ const Login = (props) => {
   };
 
   // submit form
+
 const handleFormSubmit = async event => {
   event.preventDefault();
 
@@ -30,6 +32,7 @@ const handleFormSubmit = async event => {
     console.error(e);
   }
 };
+
 
   return (
     <main className='flex-row justify-center mb-4'>
@@ -68,4 +71,6 @@ const handleFormSubmit = async event => {
   );
 };
 
+
 export default Login;
+
