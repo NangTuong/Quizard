@@ -11,7 +11,7 @@ const questionSchema = new Schema(
             }
         ],
         correct_answer: {
-            type: Int,
+            type: Number,
         }
     }
 )
@@ -26,7 +26,7 @@ const ratingSchema = new Schema(
             type: String,
         },
         rating: {
-            type: Int,
+            type: Number,
             required: true
         }
     }
@@ -46,12 +46,12 @@ const quizSchema = new Schema(
         trim: true,
     },
     time_limit: {
-        type: Int,
+        type: Number,
         required: true,
     },
     ratings: [ratingSchema],
     questions: [questionSchema],
-    scores: [Int],
+    scores: [Number],
   },
   {
     toJSON: {

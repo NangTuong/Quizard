@@ -21,6 +21,11 @@ const typeDefs = gql`
     scores: [Int]
   }
 
+  input QuizInput {
+    time_limit: Int
+    questions: [QuestionInput]
+  }
+
   type Rating {
     _id: ID
     message: String
@@ -34,6 +39,17 @@ const typeDefs = gql`
     correct_answer: Int
   }
 
+  input QuestionInput {
+    question_text: String
+    choices: [String]
+    correct_answer: Int
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     me: User
     user(username: String!): User
@@ -44,8 +60,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addQuiz(time_limit: Int!, questions: [Question]!): Quiz
-    addReaction(quizId: ID!, message: String, rating: Int!): Quiz
+    addQuiz(input: QuizInput): Quiz
+    addRating(quizId: ID!, message: String, rating: Int!): Quiz
     addFriend(friendId: ID!): User
     deleteQuiz(quizId: String!): Quiz
   }
