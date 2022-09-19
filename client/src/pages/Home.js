@@ -1,11 +1,9 @@
+import React from 'react';
 
-import react from 'react';
-
-
-function Home() {
+const Home = () => {
     return (
         <div>
-            
+            <h1>Test</h1>
         </div>
     );
 }
