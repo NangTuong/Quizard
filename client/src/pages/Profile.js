@@ -49,6 +49,9 @@ const Profile = () => {
           <div className="col-12 col-lg-3 mb-3">
             <QuizForm></QuizForm>
           </div>
+          <div className="col-12 col-lg-3 mb-3">
+            <Quizzes></Quizzes>
+          </div>
         </div>
         
       </div>
