@@ -11,14 +11,18 @@ export const QUERY_USER = gql`
                 _id
                 username
             }
-            thoughts {
+            quizzes {
                 _id
-                thoughtText
-                createdAt
-                reactionCount
+                title
+                questions {
+                    question
+                    choices
+                    correct_answer
+                }
+                time_limit
             }
         }
-    }    
+    }
 `;
 
 export const QUERY_ME = gql`
@@ -31,6 +35,16 @@ export const QUERY_ME = gql`
             friends {
                 _id
                 username
+            }
+            quizzes {
+                _id
+                title
+                questions {
+                    question
+                    choices
+                    correct_answer
+                }
+                time_limit
             }
         }
     }

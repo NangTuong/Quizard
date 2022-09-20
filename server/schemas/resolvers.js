@@ -56,8 +56,9 @@ const resolvers = {
           return { token, user };
         },
         addQuiz: async (parent, args, context) => {
+          console.log(args)
           if (context.user) {
-            const quiz = await Quiz.create({ ...args, username: context.user.username });
+            const quiz = await Quiz.create({ ...args.quiz, username: context.user.username, user_id: context.user._id });
             await User.findByIdAndUpdate(
               { _id: context.user._id },
               { $push: { quizzes: quiz._id } },
