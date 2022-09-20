@@ -34,47 +34,53 @@ const Signup = () => {
   };
 
   return (
-    <main className='flex-row justify-center mb-4'>
-      <div className='col-12 col-md-6'>
-        <div className='card'>
-          <h4 className='card-header'>Sign Up</h4>
-          <div className='card-body'>
+    <main>
+      <div className='form'>
+          <h1>Sign Up</h1>
+          <div>
             <form onSubmit={handleFormSubmit}>
-              <input
-                className='form-input'
-                placeholder='Your username'
-                name='username'
-                type='username'
-                id='username'
-                value={formState.username}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='Your email'
-                name='email'
-                type='email'
-                id='email'
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='******'
-                name='password'
-                type='password'
-                id='password'
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <button className='btn d-block w-100' type='submit'>
-                Submit
-              </button>
+              <div className='container'>
+                <div>
+                  <label htmlFor='username'>Username:</label><br/>
+                  <input
+                    placeholder='Enter your username'
+                    name='username'
+                    type='username'
+                    id='username'
+                    value={formState.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor='email'>Email:</label><br/>
+                  <input
+                    placeholder='Enter your email'
+                    name='email'
+                    type='email'
+                    id='email'
+                    value={formState.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor='password'>Password:</label><br/>
+                  <input
+                    placeholder='******'
+                    name='password'
+                    type='password'
+                    id='password'
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                  <button className='btn' type='submit'>
+                    Submit
+                  </button>
+              </div>
             </form>
             {error && <div>Sign up failed</div>}
           </div>
         </div>
-      </div>
     </main>
   );
 };
