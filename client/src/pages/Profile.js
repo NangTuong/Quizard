@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import QuizForm from '../components/QuizForm.js';
 
 const Profile = () => {
   
@@ -44,7 +45,7 @@ const Profile = () => {
           
   
           <div className="col-12 col-lg-3 mb-3">
-            
+            <QuizForm></QuizForm>
           </div>
         </div>
         

@@ -45,6 +45,10 @@ const quizSchema = new Schema(
         required: true,
         trim: true,
     },
+    title: {
+      type: String,
+      required: true
+    },
     time_limit: {
         type: Number,
         required: true,

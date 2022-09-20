@@ -14,6 +14,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     user_id: ID
+    title: String
     time_limit: Int
     timesTaken: Int
     ratings: [Rating]
@@ -23,6 +24,7 @@ const typeDefs = gql`
 
   input QuizInput {
     time_limit: Int
+    title: String
     questions: [QuestionInput]
   }
 
