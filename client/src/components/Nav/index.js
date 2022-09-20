@@ -14,6 +14,7 @@ function Nav() {
                 {Auth.loggedIn() ? (
             <>
               <Link to="/profile">Me</Link>
+              <Link to="/">Home</Link>
               <a href='/' onClick={logout}>
                 Logout
               </a>
