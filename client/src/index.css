@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(90deg, rgb(49, 182, 249) 0%, rgb(241, 73, 241) 33%, rgb(78, 255, 78) 85%);
+  background-image: linear-gradient(90deg, #2A8d8F 5%, #E9C46A 33%, #F4A261 66%, #E76F51 95%);
 }
 
 header {
@@ -14,6 +14,83 @@ header img {
 a {
   margin: 5px;
 }
+
+.form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.container {
+  margin: 10px auto;
+  padding: 15px;
+  border: solid 2px rgb(49, 30, 16);
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  background:
+    linear-gradient(324deg, #2A8d8F 4%,   transparent 4%) -70px 43px,
+    linear-gradient( 36deg, #2A8d8F 4%,   transparent 4%) 30px 43px,
+    linear-gradient( 72deg, #E9C46A 8.5%, transparent 8.5%) 30px 43px,
+    linear-gradient(288deg, #E9C46A 8.5%, transparent 8.5%) -70px 43px,
+    linear-gradient(216deg, #E9C46A 7.5%, transparent 7.5%) -70px 23px,
+    linear-gradient(144deg, #E9C46A 7.5%, transparent 7.5%) 30px 23px,
+
+    linear-gradient(324deg, #2A8d8F 4%,   transparent 4%) -20px 93px,
+    linear-gradient( 36deg, #2A8d8F 4%,   transparent 4%) 80px 93px,
+    linear-gradient( 72deg, #E9C46A 8.5%, transparent 8.5%) 80px 93px,
+    linear-gradient(288deg, #E9C46A 8.5%, transparent 8.5%) -20px 93px,
+    linear-gradient(216deg, #E9C46A 7.5%, transparent 7.5%) -20px 73px,
+    linear-gradient(144deg, #E9C46A 7.5%, transparent 7.5%) 80px 73px;
+  background-color: #2A8d8F;
+  background-size: 100px 100px;
+}
+
+.container label {
+  border: solid 2px black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #2A8d8F;
+  color: white;
+}
+
+.container input {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.btn {
+  border-radius: 5px;
+  background: #264653;
+  text-decoration: none;
+  padding: 5px 50px 5px 15px;
+  margin: 15px auto 10px auto;
+  border: 2px, solid black;
+  color: #E9C46A;
+  font-size: 20px;
+  font-weight: bold;
+  max-width: 100px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  animation: pulse 0.75s 2;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1.5);
+  }
+    100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
+  }
+}
+
+
 
 
 
