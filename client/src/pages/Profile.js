@@ -4,15 +4,16 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import QuizForm from '../components/QuizForm.js';
+import MyQuiz from '../components/MyQuiz';
 
 const Profile = () => {
-  
+
     const { username: userParam } = useParams();
-    
+
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
       variables: {username: userParam }
    });
-  
+
    const user = data?.me || data?.user || {};
    if (user.username) {
      console.log(user);
@@ -50,7 +51,7 @@ const Profile = () => {
             <QuizForm></QuizForm>
           </div>
           <div className="col-12 col-lg-3 mb-3">
-            <Quizzes></Quizzes>
+            <MyQuiz></MyQuiz>
           </div>
         </div>
         
