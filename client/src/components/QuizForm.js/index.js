@@ -27,14 +27,19 @@ const QuizForm = () => {
 
     const removeQuestion = event => {
         event.preventDefault();
-        event.stopPropagation();
+
+        // Remove question from general form state
         formState.questions.splice(parseInt(event.target.value), 1);
-        console.log(formState)
         setFormState({...formState})
     }
     const handleAddQuestion = event => {
         event.preventDefault();
+        // Retrieve data from form state
         const data = {...questionFormState}
+
+
+
+        // Re-format question object
         const question = {
             question: '',
             choices: [],
@@ -43,11 +48,16 @@ const QuizForm = () => {
         for (let i = 1; i <=4; i++) {
             question.choices.push(data[`choice_${i}`]);
         }
+
         // Convert to index
         question.correct_answer = (parseInt(data.correct_answer) - 1);
         question.question = data.question
         formState.questions.push(question)
+
+        // Set general form state
         setFormState({...formState})
+
+        // Clear question form state
         setQuestionFormState({question: '',choice_1: '', choice_2: '', choice_3: '', choice_4: '', correct_answer: ''})
     }
 

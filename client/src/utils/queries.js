@@ -49,3 +49,20 @@ export const QUERY_ME = gql`
         }
     }
 `;
+
+export const QUERY_QUIZZES = gql`
+    query quizzes {
+        quizzes {
+            _id
+            username
+            user_id
+            title
+            questions {
+                question
+                choices
+                correct_answer
+            }
+            time_limit
+        }
+    }
+`
