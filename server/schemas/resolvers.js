@@ -24,7 +24,7 @@ const resolvers = {
               .populate('friends')
         },
         quizzes: async (parent, args) => {
-            return Quiz.find().select('-__v')
+            return Quiz.find().select('-__v');
         },
         quiz: async (parent, { _id }) => {
             return Quiz.findOne({ _id });
