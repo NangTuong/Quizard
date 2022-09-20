@@ -24,3 +24,20 @@ export const ADD_USER = gql`
     }
 
 `;
+
+export const ADD_QUIZ = gql`
+    mutation addQuiz($quiz: QuizInput) {
+        addQuiz(quiz: $quiz) {
+            _id
+            username
+            user_id
+            title
+            time_limit
+            questions {
+                question
+                choices
+            }
+        }
+    }
+`
+

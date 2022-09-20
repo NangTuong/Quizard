@@ -36,13 +36,13 @@ const typeDefs = gql`
 
   type Question {
     _id: ID
-    question_text: String
+    question: String
     choices: [String]
     correct_answer: Int
   }
 
   input QuestionInput {
-    question_text: String
+    question: String
     choices: [String]
     correct_answer: Int
   }
@@ -62,7 +62,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addQuiz(input: QuizInput): Quiz
+    addQuiz(quiz: QuizInput): Quiz
     addRating(quizId: ID!, message: String, rating: Int!): Quiz
     addFriend(friendId: ID!): User
     deleteQuiz(quizId: String!): Quiz
