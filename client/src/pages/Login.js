@@ -42,8 +42,9 @@ const handleFormSubmit = async event => {
             <form onSubmit={handleFormSubmit}>
               <div className='container'>
                 <div>
-                  <label htmlFor='email'>Email:</label><br/>
-                  <input                
+                  <label htmlFor='email' className='label'>Email:</label><br/>
+                  <input        
+                    className='input'        
                     placeholder='Your email'
                     name='email'
                     type='email'
@@ -53,8 +54,9 @@ const handleFormSubmit = async event => {
                   />
                 </div>
                 <div>
-                  <label htmlFor='password'>Password:</label><br/>
+                  <label htmlFor='password' className='label'>Password:</label><br/>
                   <input
+                    className='input'
                     placeholder='******'
                     name='password'
                     type='password'
@@ -63,7 +65,7 @@ const handleFormSubmit = async event => {
                     onChange={handleChange}
                   />
                 </div>
-                  <button className='btn' type='submit'>
+                  <button className='btn btn-pulse' type='submit'>
                     Submit
                   </button>
               </div>

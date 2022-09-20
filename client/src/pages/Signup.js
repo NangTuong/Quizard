@@ -41,9 +41,10 @@ const Signup = () => {
             <form onSubmit={handleFormSubmit}>
               <div className='container'>
                 <div>
-                  <label htmlFor='username'>Username:</label><br/>
+                  <label htmlFor='username' className='label'>Username:</label><br/>
                   <input
-                    placeholder='Enter your username'
+                    className='input'
+                    placeholder='Your username'
                     name='username'
                     type='username'
                     id='username'
@@ -52,9 +53,10 @@ const Signup = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor='email'>Email:</label><br/>
+                  <label htmlFor='email' className='label'>Email:</label><br/>
                   <input
-                    placeholder='Enter your email'
+                    className='input'
+                    placeholder='Your email'
                     name='email'
                     type='email'
                     id='email'
@@ -63,8 +65,9 @@ const Signup = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor='password'>Password:</label><br/>
+                  <label htmlFor='password' className='label'>Password:</label><br/>
                   <input
+                    className='input'
                     placeholder='******'
                     name='password'
                     type='password'
@@ -73,7 +76,7 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                 </div>
-                  <button className='btn' type='submit'>
+                  <button className='btn btn-pulse' type='submit'>
                     Submit
                   </button>
               </div>
