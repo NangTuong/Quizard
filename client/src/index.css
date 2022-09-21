@@ -129,7 +129,16 @@ a {
   }
 }
 
+footer img {
+  opacity: 0.8 ;
+  border-radius: 25px;
+  max-width: 100%;
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-
-
-
+footer {
+  color:rgb(23, 11, 51);
+}
