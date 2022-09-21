@@ -51,6 +51,7 @@ const Profile = () => {
             <QuizForm></QuizForm>
           </div>
           <div className="col-12 col-lg-3 mb-3">
+            <h2>Viewing {userParam ? `${user.username}'s` : 'your'} Quizzes</h2>
             <QuizList quizzes={user.quizzes}></QuizList>
           </div>
         </div>
