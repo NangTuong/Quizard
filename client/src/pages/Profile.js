@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import QuizForm from '../components/QuizForm.js';
-import MyQuiz from '../components/MyQuiz';
+import QuizList from '../components/QuizList';
 
 const Profile = () => {
 
@@ -51,7 +51,7 @@ const Profile = () => {
             <QuizForm></QuizForm>
           </div>
           <div className="col-12 col-lg-3 mb-3">
-            <MyQuiz></MyQuiz>
+            <QuizList quizzes={user.quizzes}></QuizList>
           </div>
         </div>
         
