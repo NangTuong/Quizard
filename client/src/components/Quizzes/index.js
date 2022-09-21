@@ -14,6 +14,7 @@ const Quizzes = () => {
 
     return (
         <div>
+            
         </div>
     )
 }
