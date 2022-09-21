@@ -43,8 +43,8 @@ const handleFormSubmit = async event => {
               <div className='container'>
                 <div>
                   <label htmlFor='email' className='label'>Email:</label><br/>
-                  <input        
-                    className='input'        
+                  <input
+                    className='input'
                     placeholder='Your email'
                     name='email'
                     type='email'
