@@ -4,8 +4,16 @@ const QuizList = ({quizzes}) => {
     return (
         <div>
             {quizzes.map(quiz => (
-                <div>{quiz.title}</div>
-            ))}
+                <div className="question-card">
+                    <div>
+                    {quiz.title}
+                    </div>
+                    <div>
+                    {quiz.time_limit} Minutes
+                    </div>
+                </div>
+            
+                 ))}
         </div>
     )
 }
