@@ -39,33 +39,31 @@ const Profile = (props) => {
    }
     return (
       <div>
-        <div className="flex-row mb-3">
-          <h2 className="bg-dark text-secondary p-3 display-inline-block">
-            Viewing {userParam ? `${userParam}'s`: 'your'} profile.
+        <div className="">
+          <h2 className="center">
+            Viewing {userParam ? `${userParam}'s`: 'your'} profile
           </h2>
         </div>
-        <button className='btn' value='my-quizzes' onClick={changeComponent}>My Quizzes</button>
-        <button className='btn' value='quiz-form' onClick={changeComponent}>Create Quiz</button>
-  
-        <div className="flex-row justify-space-between mb-3">
-          <div className="col-12 col-lg-3 mb-3">
+          <div className='btn-cont'>
+            <button className='btn m-10' value='my-quizzes' onClick={changeComponent}>My Quizzes</button>
+            <button className='btn m-10' value='quiz-form' onClick={changeComponent}>Create Quiz</button>
+          </div>
+        <div className="">
+          <div className="">
             {component === 'quiz-form' ? (
               <div>
                 <QuizForm></QuizForm>
               </div>
             ):(
               <div>
-                <h2 className="bg-dark text-secondary p-3 display-inline-block">
+                <h2 className="">
                 Your Quizzes
                 </h2>
                 <QuizList profile={true} quizzes={user.quizzes}/>
               </div>
             )}
           </div>
-          <div className="col-12 col-lg-3 mb-3">
-          </div>
         </div>
-        
       </div>
     );
   };
