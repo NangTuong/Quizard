@@ -91,7 +91,7 @@ const QuizForm = () => {
                             </div>
                             <div>
                                 <label className='label'>Time Limit (minutes)</label><br/>
-                                <input className='input' name='time_limit' placeholder='Time Limit' onChange={handleChange} value={formState.time_limit} required></input>
+                                <input className='input' type='number' min='1' name='time_limit' placeholder='Time Limit' onChange={handleChange} value={formState.time_limit} required></input>
                             </div>
                         </form>
                     </div>
@@ -118,8 +118,8 @@ const QuizForm = () => {
                                     <input className='input' name='choice_4' onChange={handleQuestionChange} value={questionFormState.choice_4} placeholder='Choice 4' required></input>
                                 </div>
                                 <div>
-                                    <label className='label'>Correct Answer: </label>
-                                    <input className='input' name='correct_answer' placeholder='(1-4)' type='number' max='4' min='1' onChange={handleQuestionChange} value={questionFormState.correct_answer} required></input>
+                                    <label className='label'>Correct Answer (1-4): </label>
+                                    <input className='input' name='correct_answer' type='number' max='4' min='1' onChange={handleQuestionChange} value={questionFormState.correct_answer} required></input>
                                 </div>
                             </div>
                             <button className='btn quiz-btn' type='submit'>Add To Quiz!</button>
@@ -127,11 +127,10 @@ const QuizForm = () => {
                         </form>
                     </div>
                 </div>
-                
                 {formState.questions.length > 0 && 
                     <div>
                         <p>{formState.title} Questions:</p><br/>
-                        <div className='quiz-questions'>    
+                        <div className='quiz-questions'>
                             {formState.questions.map((question, q_index) => (
                                 <div key={q_index} className="question-card">
                                     <p className='label'>Question: {question.question}</p>

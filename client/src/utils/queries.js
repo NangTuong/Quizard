@@ -66,3 +66,21 @@ export const QUERY_QUIZZES = gql`
         }
     }
 `
+
+export const QUERY_QUIZ = gql`
+    query quiz ($quizId: ID!) {
+        quiz (_id: $quizId) {
+            _id
+            username
+            user_id
+            title
+            questions {
+                question
+                choices
+                correct_answer
+            }
+            time_limit
+        }
+    }
+
+`
