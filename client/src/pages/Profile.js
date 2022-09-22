@@ -4,8 +4,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import QuizForm from '../components/QuizForm.js';
-import QuizList from '../components/QuizList';
-
 const Profile = () => {
 
     const { username: userParam } = useParams();
@@ -15,9 +13,6 @@ const Profile = () => {
    });
 
    const user = data?.me || data?.user || {};
-   if (user.username) {
-     console.log(user);
-   }
 
    // navigate to personal profile page if username is the logged-in user's
    if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -39,19 +34,15 @@ const Profile = () => {
       <div>
         <div className="flex-row mb-3">
           <h2 className="bg-dark text-secondary p-3 display-inline-block">
-            Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+            Viewing your profile.
           </h2>
-  
         </div>
   
         <div className="flex-row justify-space-between mb-3">
-          
-  
           <div className="col-12 col-lg-3 mb-3">
-            <QuizForm></QuizForm>
+            <QuizForm user={user}></QuizForm>
           </div>
           <div className="col-12 col-lg-3 mb-3">
-            <QuizList quizzes={user.quizzes}></QuizList>
           </div>
         </div>
         

@@ -8,7 +8,11 @@ header {
   justify-content: center;
 }
 header img {
-  width: stretch;
+  width: auto;
+  max-width: 100vw;
+  max-height: 250px;
+  height: 25vh;
+  max-height: 25vh;
 }
 
 .form {
@@ -16,6 +20,22 @@ header img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.quiz-list-item {
+  border-radius: 20px;
+  width: 50%;
+  height: 100px;
+  background-color: #2A8d8F;
+  border: 2px solid gray;
+  margin: 24px 0;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+}
+.quiz-title {
+  font-size: 20px;
+  margin: 0;
+}
+.quiz-list-buttons {
+  margin: 12px;
 }
 
 .container {
@@ -136,6 +156,9 @@ header img {
   background-color: #2A8d8F;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.quiz-list-item {
+  padding: 12px;
+}
 .nav {
   height: 50px;
   width: 120%;
@@ -146,9 +169,10 @@ header img {
 }
 
 .nav-link {
-  width: 100px;
-  height: 100%;
-  font-size: 3vh;
+  width: 10vw;
+  padding: 12px;
+  height: fit-content;
+  font-size: 2vw;
   display: flex;
   align-items: center;
   justify-content: center;

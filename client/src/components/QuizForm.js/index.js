@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_QUIZ } from '../../utils/mutations';
+import QuizList from '../QuizList';
 
-const QuizForm = () => {
+const QuizForm = ({user}) => {
     const [formState, setFormState] = useState({ title: '', questions: [], time_limit: ''});
     const [addQuiz] = useMutation(ADD_QUIZ);
+    const [errorState, setErrorState] = useState('');
+    const [quizzesState, setQuizzesState] = useState({quizzes: [...user.quizzes]});
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-    
         setFormState({
           ...formState,
           [name]: value,
@@ -64,30 +66,43 @@ const QuizForm = () => {
 
     const handleFormSubmit = async event => {
         event.preventDefault();
-        formState.time_limit = parseInt(formState.time_limit)
-        console.log(formState)
-        try {
-            const { data } = await addQuiz({
-                variables: {
-                    quiz: {...formState}
-                }
-            })
-            console.log(data)
+        if (!formState.questions.length) {
+            setErrorState("Please add questions before submitting!");
+            setFormState({...formState})
+            setTimeout(() => {
+                formState.error = '';
+                setErrorState('')
+            }, 2000);
         }
-        catch (error) {
-            console.log(error)
+        else {
+            formState.time_limit = parseInt(formState.time_limit)
+            try {
+                const { data } = await addQuiz({
+                    variables: {
+                        quiz: {...formState}
+                    }
+                })
+                setQuizzesState({...quizzesState})
+                setFormState({ title: '', questions: [], time_limit: ''})
+            }
+            catch (error) {
+                console.log(error)
+                console.log(JSON.stringify(error, null, 2));
+            }
         }
     }
-
     return (
         <div>
             <div className='form-cont'>
+                <h2 className="bg-dark text-secondary p-3 display-inline-block">
+                Create a quiz!
+                </h2>
                 <div>
                     <div>
                         <form className='form' id='quiz-form' onSubmit={handleFormSubmit}>
                             <div>
                                 <label className='label'>Quiz Title</label><br/>
-                                <input className='input' name='title' placeholder='Quiz Title' onChange={handleChange} value={formState.quiz_title} required></input>
+                                <input className='input' name='title' placeholder='Quiz Title' onChange={handleChange} value={formState.title} required></input>
                             </div>
                             <div>
                                 <label className='label'>Time Limit (minutes)</label><br/>
@@ -95,58 +110,65 @@ const QuizForm = () => {
                             </div>
                         </form>
                     </div>
-                    <div>
-                        <h3>Add Questions!</h3>
-                        <form id='add-question-form' onSubmit={handleAddQuestion}>
-                            <div>
-                                <label className='label'>Question: </label>
-                                <input className='input' name='question'  onChange={handleQuestionChange}  value={questionFormState.question} placeholder='Question' required></input>
+                    <div style={{display:'flex', flexWrap:'wrap'}}>
+                        <div>
+                            <h3>Add Questions!</h3>
+                            <form id='add-question-form' onSubmit={handleAddQuestion}>
                                 <div>
-                                    <label className='label'>Choice 1: </label>
-                                    <input className='input' name='choice_1' onChange={handleQuestionChange} value={questionFormState.choice_1} placeholder='Choice 1' required></input>
+                                    <label className='label'>Question: </label>
+                                    <input className='input' name='question'  onChange={handleQuestionChange}  value={questionFormState.question} placeholder='Question' required></input>
+                                    <div>
+                                        <label className='label'>Choice 1: </label>
+                                        <input className='input' name='choice_1' onChange={handleQuestionChange} value={questionFormState.choice_1} placeholder='Choice 1' required></input>
+                                    </div>
+                                    <div>
+                                        <label className='label'>Choice 2: </label>
+                                        <input className='input' name='choice_2' onChange={handleQuestionChange} value={questionFormState.choice_2} placeholder='Choice 2' required></input>
+                                    </div>
+                                    <div>
+                                        <label className='label'>Choice 3: </label>
+                                        <input className='input' name='choice_3' onChange={handleQuestionChange} value={questionFormState.choice_3} placeholder='Choice 3' required></input>
+                                    </div>
+                                    <div>
+                                        <label className='label'>Choice 4: </label>
+                                        <input className='input' name='choice_4' onChange={handleQuestionChange} value={questionFormState.choice_4} placeholder='Choice 4' required></input>
+                                    </div>
+                                    <div>
+                                        <label className='label'>Correct Answer (1-4): </label>
+                                        <input className='input' name='correct_answer' type='number' max='4' min='1' onChange={handleQuestionChange} value={questionFormState.correct_answer} required></input>
+                                    </div>
                                 </div>
+                                <button className='btn quiz-btn' type='submit'>Add To Quiz!</button>
+                                <button className='btn quiz-btn btn-pulse' type='submit' form='quiz-form'>Done!</button>
                                 <div>
-                                    <label className='label'>Choice 2: </label>
-                                    <input className='input' name='choice_2' onChange={handleQuestionChange} value={questionFormState.choice_2} placeholder='Choice 2' required></input>
+                                    <p><strong>{errorState}</strong></p>
                                 </div>
-                                <div>
-                                    <label className='label'>Choice 3: </label>
-                                    <input className='input' name='choice_3' onChange={handleQuestionChange} value={questionFormState.choice_3} placeholder='Choice 3' required></input>
-                                </div>
-                                <div>
-                                    <label className='label'>Choice 4: </label>
-                                    <input className='input' name='choice_4' onChange={handleQuestionChange} value={questionFormState.choice_4} placeholder='Choice 4' required></input>
-                                </div>
-                                <div>
-                                    <label className='label'>Correct Answer (1-4): </label>
-                                    <input className='input' name='correct_answer' type='number' max='4' min='1' onChange={handleQuestionChange} value={questionFormState.correct_answer} required></input>
-                                </div>
+                            </form>
+                        </div>
+                    {formState.questions.length > 0 && (
+                        <div>
+                            <h3>{formState.title} Questions:</h3>
+                            <div className='quiz-questions'>
+                                {formState.questions.map((question, q_index) => (
+                                    <div key={q_index} className="question-card">
+                                        <p className='label'>Question: {question.question}</p>
+                                        <p style={{fontStyle: 'italic', fontWeight: 'bold'}}>Correct Answer:{question.correct_answer + 1}</p>
+                                        <ol>
+                                            {question.choices.map((choice, c_index) => (
+                                                <li key={c_index} className="label"><p>{choice}</p></li>
+                                            ))}
+                                        </ol>
+                                        <button className='btn' value={q_index} onClick={removeQuestion}>Remove</button>
+                                    </div>
+                                ))}
                             </div>
-                            <button className='btn quiz-btn' type='submit'>Add To Quiz!</button>
-                            <button className='btn quiz-btn btn-pulse' type='submit' form='quiz-form'>Done!</button>
-                        </form>
+                        </div>
+
+                    )}
                     </div>
                 </div>
-                {formState.questions.length > 0 && 
-                    <div>
-                        <p>{formState.title} Questions:</p><br/>
-                        <div className='quiz-questions'>
-                            {formState.questions.map((question, q_index) => (
-                                <div key={q_index} className="question-card">
-                                    <p className='label'>Question: {question.question}</p>
-                                    <p style={{fontStyle: 'italic', fontWeight: 'bold'}}>Correct Answer:{question.correct_answer + 1}</p>
-                                    <ol>
-                                        {question.choices.map((choice, c_index) => (
-                                            <li key={c_index} className="label"><p>{choice}</p></li>
-                                        ))}
-                                    </ol>
-                                    <button className='btn' value={q_index} onClick={removeQuestion}>Remove</button>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                }
             </div>
+        <QuizList profile={true} quizzes={quizzesState.quizzes}/>
         </div>
     )
 }

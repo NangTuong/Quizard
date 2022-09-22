@@ -65,7 +65,7 @@ const typeDefs = gql`
     addQuiz(quiz: QuizInput): Quiz
     addRating(quizId: ID!, message: String, rating: Int!): Quiz
     addFriend(friendId: ID!): User
-    deleteQuiz(quizId: String!): Quiz
+    deleteQuiz(quizId: ID!): User
   }
 `;
 

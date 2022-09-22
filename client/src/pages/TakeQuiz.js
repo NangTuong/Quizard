@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { QUERY_QUIZ } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { useParams, useResolvedPath } from 'react-router-dom';
-
-
+import { useParams } from 'react-router-dom';
 
 
 const TakeQuiz = (props) => {

@@ -8,10 +8,10 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({_id: context.user._id})
-                    .select('-v__ -password')
+                    .select('-__v -password')
                     .populate('quizzes')
                     .populate('friends')
-
+                console.log(userData)
                 return userData
             }
 
@@ -56,28 +56,33 @@ const resolvers = {
           return { token, user };
         },
         addQuiz: async (parent, args, context) => {
-          console.log(args)
           if (context.user) {
             const quiz = await Quiz.create({ ...args.quiz, username: context.user.username, user_id: context.user._id });
-            await User.findByIdAndUpdate(
+            const user = await User.findByIdAndUpdate(
               { _id: context.user._id },
               { $push: { quizzes: quiz._id } },
               { new: true }
-            );
+            )
             return quiz;
           }
           throw new AuthenticationError('You need to be logged in!');
         },
         deleteQuiz: async (parent, { quizId }, context) => {
+          try {
             if (context.user) {
-              const quiz = await Quiz.findOneAndDelete({_id: quizId });
-              await User.findByIdAndUpdate(
+              await Quiz.findOneAndDelete({_id: quizId });
+              const user = await User.findByIdAndUpdate(
                 { _id: context.user._id },
                 { $pull: { quizzes: quizId } },
-              );
-              return quiz;
+              ).populate('quizzes');
+              return user;
             }
             throw new AuthenticationError('You need to be logged in!');
+          }
+          catch(error) {
+            console.log(error)
+          }
+           
           },
         addRating: async (parent, args, context) => {
           if (context.user) {

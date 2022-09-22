@@ -20,8 +20,8 @@ function Nav() {
     )
   }
   return (
-      <nav>
-        <Link to="/">Home</Link>
+      <nav className='nav'>
+        <Link to="/" className='nav-link'>Home</Link>
         <Link to="/login" className='nav-link'>Login</Link>
         <Link to="/signup" className='nav-link'>Signup</Link>
       </nav>

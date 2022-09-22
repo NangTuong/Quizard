@@ -41,3 +41,16 @@ export const ADD_QUIZ = gql`
     }
 `
 
+export const DELETE_QUIZ = gql`
+    mutation deleteQuiz($quizId: ID!) {
+        deleteQuiz(quizId: $quizId) {
+            _id
+            username
+            quizzes {
+                _id
+                title
+            }
+        }
+    }
+`
+
