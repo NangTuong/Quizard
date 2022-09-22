@@ -5,8 +5,8 @@ import Nav from '../Nav';
 function Header() {
     return(
         <header>
-            <img src={Banner} alt='Quizard banner with two wizards'></img>
             <Nav></Nav>
+            <img src={Banner} alt='Quizard banner with two wizards'></img>
         </header>
     )
 };
