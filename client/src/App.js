@@ -12,7 +12,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
-import TakeQuiz from './pages/TakeQuiz'
+import TakeQuiz from './pages/TakeQuiz';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -59,6 +60,7 @@ function App() {
                     <Route path='/take-quiz/:id' element={<TakeQuiz/>}>
                     </Route>
                   </Routes>
+                  <Footer />
               </div>
             </Router>
         </ApolloProvider>
