@@ -96,7 +96,7 @@ const QuizForm = () => {
     return (
         <div>
             <div className='form-cont'>
-                <h2 className="bg-dark text-secondary p-3 display-inline-block">
+                <h2 className="quiz-title">
                 Create a quiz!
                 </h2>
                 <div>
@@ -112,8 +112,8 @@ const QuizForm = () => {
                             </div>
                         </form>
                     </div>
-                    <div style={{display:'flex', flexWrap:'wrap'}}>
-                        <div>
+                    <div >
+                        <div className='center'>
                             <h3>Add Questions!</h3>
                             <form id='add-question-form' onSubmit={handleAddQuestion}>
                                 <div>
@@ -140,8 +140,8 @@ const QuizForm = () => {
                                         <input className='input' name='correct_answer' type='number' max='4' min='1' onChange={handleQuestionChange} value={questionFormState.correct_answer} required></input>
                                     </div>
                                 </div>
-                                <button className='btn quiz-btn' type='submit'>Add To Quiz!</button>
-                                <button className='btn quiz-btn btn-pulse' type='submit' form='quiz-form'>Done!</button>
+                                <button className='btn m-10' type='submit'>Add To Quiz!</button>
+                                <button className='btn m-10 btn-pulse' type='submit' form='quiz-form'>Done!</button>
                                 <div>
                                     <p><strong>{errorState}</strong></p>
                                 </div>
@@ -160,7 +160,7 @@ const QuizForm = () => {
                                                 <li key={c_index} className="label"><p>{choice}</p></li>
                                             ))}
                                         </ol>
-                                        <button className='btn' value={q_index} onClick={removeQuestion}>Remove</button>
+                                        <button className='btn shake' value={q_index} onClick={removeQuestion}>Remove</button>
                                     </div>
                                 ))}
                             </div>

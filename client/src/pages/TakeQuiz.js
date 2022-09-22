@@ -89,21 +89,23 @@ const TakeQuiz = (props) => {
     }
     if (!quizDone) {
         return (
-                <div>
-                    <p><strong>Timer:</strong></p>
-                    <p className='timer-box'>
-                        <span className='timer-item'>{timerState.hours}</span>
-                        <span className='timer-item'>{timerState.minutes}</span>
-                        <span className='timer-item'>{timerState.seconds}</span>
-                    </p>
-                    <div>
-                        <ul>
+                <div className='form-cont'>
+                    <div className=''>
+                        <p><strong>Timer:</strong></p>
+                        <p className='timer-box'>
+                            <span className='timer-item'>{timerState.hours}</span>
+                            <span className='timer-item'>{timerState.minutes}</span>
+                            <span className='timer-item'>{timerState.seconds}</span>
+                        </p>
+                    </div>
+                    <div className='quiz'>
+                        <ol>
                             {data.quiz && data.quiz.questions.map((question, q_index) => (
                                 <li  key={q_index}>
                                     <p>{question.question}</p>
                                     <div>
                                         {question.choices.map((choice, c_index) => (
-                                            <div key={c_index}>
+                                            <div key={c_index} className='m-10'>
                                                 <label>
                                                     <input onChange={updateAnswers} value={`${q_index}_${c_index}`} type='radio' name={`question_${q_index}_choice`}></input>
                                                     <span>{choice}</span>
@@ -113,7 +115,7 @@ const TakeQuiz = (props) => {
                                     </div>
                                 </li>
                             ))}
-                        </ul>
+                        </ol>
                     </div>
                     <button className='btn' onClick={finishQuiz}>Finish</button>
                 </div>
@@ -121,21 +123,21 @@ const TakeQuiz = (props) => {
     }
     else {
         return (
-            <div>
-                <h3>Your Score: {answersState.score}</h3>
+            <div className='question-card'>
+                <h3 className='center'>Your Score: {answersState.score}</h3>
                 <div>
-                    <ul>
+              
                         {answersState.questions.map((question, index) => (
                             <div className='question-list-item'>
                                 <p>Question {index + 1}: {question.question}</p>
-                                <p>Result: <span>{question.correct ? 'CORRECT' : 'INCORRECT'}</span></p>
+                                <p>Result: <span>{question.correct ? 'CORRECT!' : 'INCORRECT'}</span></p>
                                 {!question.correct && (
                                     <p style={{marginLeft: '12px'}}><strong>Correct Answer:</strong> {question.choices[question.correct_answer]}</p>
                                 )}
                                 <p style={{marginLeft: '12px'}}><strong>Your Answer:</strong> {question.choices[question.answer]}</p>
                             </div>
                         ))}
-                    </ul>
+                  
                 </div>
             </div>
         )
