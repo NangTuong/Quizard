@@ -30,12 +30,14 @@ export const ADD_QUIZ = gql`
         addQuiz(quiz: $quiz) {
             _id
             username
-            user_id
-            title
-            time_limit
-            questions {
-                question
-                choices
+            quizzes {
+                _id
+                title
+                questions {
+                    choices
+                    question
+                }
+                time_limit
             }
         }
     }

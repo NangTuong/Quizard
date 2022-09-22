@@ -15,23 +15,6 @@ const questionSchema = new Schema(
         }
     }
 )
-
-const ratingSchema = new Schema(
-    {
-        username: {
-            type: String,
-            required: true
-        },
-        message: {
-            type: String,
-        },
-        rating: {
-            type: Number,
-            required: true
-        }
-    }
-)
-
 const quizSchema = new Schema(
   {
     username: {
@@ -52,9 +35,7 @@ const quizSchema = new Schema(
         type: Number,
         required: true,
     },
-    ratings: [ratingSchema],
     questions: [questionSchema],
-    scores: [Number],
   },
   {
     toJSON: {
@@ -63,21 +44,6 @@ const quizSchema = new Schema(
   }
 );
 
-quizSchema.methods.averageScore = () => {
-  let total = 0;
-  this.scores.forEach(score => total += score)
-  return total / this.scores.length
-};
-
-quizSchema.methods.averageRating = () => {
-    let total = 0;
-    this.ratings.forEach(rating => total += rating.rating)
-    return total / this.ratings.length
-}
-
-quizSchema.virtual('timesTaken').get(function() {
-  return this.scores.length;
-});
 
 const Quiz = model('Quiz', quizSchema);
 

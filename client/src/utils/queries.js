@@ -51,8 +51,8 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_QUIZZES = gql`
-    query quizzes {
-        quizzes {
+    query quizzes ($username: String) {
+        quizzes (username: $username) {
             _id
             username
             user_id

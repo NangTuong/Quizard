@@ -10,8 +10,6 @@ const resolvers = {
                 const userData = await User.findOne({_id: context.user._id})
                     .select('-__v -password')
                     .populate('quizzes')
-                    .populate('friends')
-                console.log(userData)
                 return userData
             }
 
@@ -62,8 +60,8 @@ const resolvers = {
               { _id: context.user._id },
               { $push: { quizzes: quiz._id } },
               { new: true }
-            )
-            return quiz;
+            ).populate('quizzes')
+            return user;
           }
           throw new AuthenticationError('You need to be logged in!');
         },
@@ -82,7 +80,6 @@ const resolvers = {
           catch(error) {
             console.log(error)
           }
-           
           },
         addRating: async (parent, args, context) => {
           if (context.user) {

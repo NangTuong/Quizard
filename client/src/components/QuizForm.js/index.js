@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_QUIZ } from '../../utils/mutations';
-import QuizList from '../QuizList';
 
-const QuizForm = ({user}) => {
+const QuizForm = () => {
     const [formState, setFormState] = useState({ title: '', questions: [], time_limit: ''});
     const [addQuiz] = useMutation(ADD_QUIZ);
     const [errorState, setErrorState] = useState('');
-    const [quizzesState, setQuizzesState] = useState({quizzes: [...user.quizzes]});
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -77,13 +75,17 @@ const QuizForm = ({user}) => {
         else {
             formState.time_limit = parseInt(formState.time_limit)
             try {
-                const { data } = await addQuiz({
+                await addQuiz({
                     variables: {
                         quiz: {...formState}
                     }
                 })
-                setQuizzesState({...quizzesState})
-                setFormState({ title: '', questions: [], time_limit: ''})
+                setFormState({ title: '', questions: [], time_limit: ''});
+                setErrorState("Quiz successfully saved!");
+                setTimeout(() => {
+                    formState.error = '';
+                    setErrorState('')
+                }, 2000);
             }
             catch (error) {
                 console.log(error)
@@ -168,7 +170,6 @@ const QuizForm = ({user}) => {
                     </div>
                 </div>
             </div>
-        <QuizList profile={true} quizzes={quizzesState.quizzes}/>
         </div>
     )
 }
