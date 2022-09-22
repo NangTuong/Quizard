@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
+import TakeQuiz from './pages/TakeQuiz';
 import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
@@ -55,6 +56,8 @@ function App() {
                     <Route path ='/profile'>
                       <Route path =":username" element={<Profile/>} />
                       <Route path ="" element={<Profile/>} />
+                    </Route>
+                    <Route path='/take-quiz/:id' element={<TakeQuiz/>}>
                     </Route>
                   </Routes>
                   <Footer />

@@ -1,7 +1,6 @@
 import React from 'react';
 import Quizard from '../../images/Quizard.png'
 
-console.log(Quizard);
 const Footer = () => {
   return (
     <footer className="w-100 mt-auto bg-primary p-4">

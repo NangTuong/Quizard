@@ -1,19 +1,19 @@
 import React from 'react';
+import QuizList from '../components/QuizList';
 import { QUERY_QUIZZES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import QuizList from '../components/QuizList';
 
 
 const Home = () => {
-    const  {loading, data } = useQuery(QUERY_QUIZZES);
+    const {data, loading} = useQuery(QUERY_QUIZZES);
+
     if (loading) {
-        return (
-            <div>Loading...</div>
-        )
+        return <div>Loading...</div>
     }
+    const quizzes = data?.quizzes || []
     return (
         <div>
-            <QuizList quizzes={data.quizzes}></QuizList>
+            <QuizList quizzes={quizzes} profile={false}></QuizList>
         </div>
     );
 }
