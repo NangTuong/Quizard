@@ -7,6 +7,9 @@ import { useQuery } from '@apollo/client';
 const Home = () => {
     const {data, loading} = useQuery(QUERY_QUIZZES);
 
+    if (loading) {
+        return <div>Loading...</div>
+    }
     const quizzes = data?.quizzes || []
     return (
         <div>

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { DELETE_QUIZ } from '../../utils/mutations';
-import { QUERY_QUIZZES } from '../../utils/queries';
-import { useQuery } from '@apollo/client';
 
 const QuizList = ({quizzes, profile}) => {
     const [deleteQuizMutation] = useMutation(DELETE_QUIZ);
     const deleteQuiz = async event => {
         const quizId = event.target.value;
         try {
-            const {data} = await deleteQuizMutation({
+            await deleteQuizMutation({
                 variables: {
                     quizId: quizId
                 }
