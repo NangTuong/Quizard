@@ -58,7 +58,7 @@ const Profile = (props) => {
                 <h2 className="bg-dark text-secondary p-3 display-inline-block">
                 Your Quizzes
                 </h2>
-                <QuizList profile={true} quizzes={user.quizzes}/>
+                <QuizList profile={userParam ? false : true} quizzes={user.quizzes}/>
               </div>
             )}
           </div>
