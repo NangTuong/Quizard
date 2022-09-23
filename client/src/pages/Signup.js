@@ -76,7 +76,7 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                 </div>
-                  <button className='btn btn-pulse' type='submit'>
+                  <button className='btn pulse' type='submit'>
                     Submit
                   </button>
               </div>

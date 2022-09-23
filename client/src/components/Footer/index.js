@@ -3,13 +3,11 @@ import Quizard from '../../images/Quizard.png'
 
 const Footer = () => {
   return (
-    <footer className="w-100 mt-auto bg-primary p-4">
-      
-      <div className="container text-light">
+    <footer>
+      <div className="container">
         <div>
-                <img src={Quizard} alt="Quizard Logo" />
-        </div>
-        
+            <img src={Quizard} alt="Quizard Logo" />
+        </div>      
         &copy;2022 by Quizard</div>
     </footer>
   );
