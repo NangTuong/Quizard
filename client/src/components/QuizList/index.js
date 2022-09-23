@@ -5,6 +5,8 @@ import { DELETE_QUIZ } from '../../utils/mutations';
 
 const QuizList = ({quizzes, profile}) => {
     const [deleteQuizMutation] = useMutation(DELETE_QUIZ);
+
+    // Handles deletion of quiz
     const deleteQuiz = async event => {
         const quizId = event.target.value;
         try {

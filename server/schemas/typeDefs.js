@@ -63,8 +63,6 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addQuiz(quiz: QuizInput): User
-    addRating(quizId: ID!, message: String, rating: Int!): Quiz
-    addFriend(friendId: ID!): User
     deleteQuiz(quizId: ID!): User
   }
 `;

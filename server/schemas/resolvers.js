@@ -5,6 +5,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+      // Queries logged in user
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({_id: context.user._id})
@@ -15,15 +16,18 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in')
         },
+      // Queries a specific user
         user: async (parent, { username }) => {
             return User.findOne({ username })
               .select('-__v -password')
               .populate('quizzes')
               .populate('friends')
         },
+      // Queries all quizzes
         quizzes: async (parent, args) => {
             return Quiz.find().select('-__v');
         },
+      // Queries on quiz
         quiz: async (parent, { _id }) => {
             return Quiz.findOne({ _id });
           }
@@ -31,12 +35,14 @@ const resolvers = {
     },
 
     Mutation: {
+      // Adds a new user
         addUser: async (parent, args) => {
           const user = await User.create(args);
           const token = signToken(user);
 
           return { token, user };
         },
+      // Logs in a user
         login: async (parent, { email, password }) => {
           const user = await User.findOne({ email });
 
@@ -53,6 +59,7 @@ const resolvers = {
           const token = signToken(user);
           return { token, user };
         },
+      // Adds a new quiz
         addQuiz: async (parent, args, context) => {
           if (context.user) {
             const quiz = await Quiz.create({ ...args.quiz, username: context.user.username, user_id: context.user._id });
@@ -65,6 +72,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in!');
         },
+      // Deletes a quiz
         deleteQuiz: async (parent, { quizId }, context) => {
           try {
             if (context.user) {
@@ -81,28 +89,6 @@ const resolvers = {
             console.log(error)
           }
           },
-        addRating: async (parent, args, context) => {
-          if (context.user) {
-            const updatedQuiz = await Quiz.findOneAndUpdate(
-              { _id: args.quizId },
-              { $push: { ratings: {...args, username: context.user.username } } },
-              { new: true, runValidators: true }
-            );
-            return updatedQuiz;
-            }
-          throw new AuthenticationError('You need to be logged in!');
-        },
-        addFriend: async (parent, { friendId }, context) => {
-          if (context.user) {
-            const updatedUser = await User.findOneAndUpdate(
-              { _id: context.user._id },
-              { $addToSet: { friends: friendId } },
-              { new: true }
-            ).populate('friends');
-            return updatedUser;
-          }
-          throw new AuthenticationError('You need to be logged in!');
-        }
       }
 }
 

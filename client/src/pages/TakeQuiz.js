@@ -5,18 +5,28 @@ import { useParams } from 'react-router-dom';
 
 
 const TakeQuiz = (props) => {
+    
+    // Get Quiz
     const {id: quizId} = useParams();
     const {loading, data} = useQuery(QUERY_QUIZ, {
         variables: {
             quizId: quizId
         }
     });
+
+    // Initialize time variable
     const timeRef = useRef(0);
 
+    // Set timer state
     const [timerState, setTimerState] = useState({hours: '00',  minutes: '00', seconds: '00'})
+
+    // Set quiz state
     const [quizDone, setQuizDone] = useState(false)
 
+    // Set answers state
     const [answersState, setAnswersState] = useState({questions: [], score: '0/10'})
+
+    // Initialize answers state with all questions
     if (data) {
         if (!answersState.questions.length) {
             for (let question of data.quiz.questions) {
@@ -26,10 +36,14 @@ const TakeQuiz = (props) => {
                     answer: -1
                 })
             }
+
+            // Initialize score
             answersState.score = `0/${answersState.questions.length.toString()}`
             setAnswersState(answersState)
         }
     }
+
+    // Update timer every second
     useEffect(() => {
         const setTimer = () => {
             let temp_time = timeRef.current;
@@ -57,6 +71,8 @@ const TakeQuiz = (props) => {
         return () => clearInterval(interval);
     }, [data]);
 
+
+    // Update answers when user has clicked an answer
     const updateAnswers = (event) => {
         if (event.target.checked) {
             const question = parseInt(event.target.value.split('_')[0])
@@ -78,6 +94,7 @@ const TakeQuiz = (props) => {
         }
     }
 
+    // Finish quiz to trigger score/results rendering
     const finishQuiz = () => {
         setQuizDone(true);
     }
