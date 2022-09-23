@@ -7,6 +7,8 @@ const QuizForm = () => {
     const [addQuiz] = useMutation(ADD_QUIZ);
     const [errorState, setErrorState] = useState('');
 
+
+    // Handle change of quiz form
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormState({
@@ -15,8 +17,10 @@ const QuizForm = () => {
         });
     };
 
+    // Initialize questions form state
     const [questionFormState ,setQuestionFormState] = useState({question: '',choice_1: '', choice_2: '', choice_3: '', choice_4: '', correct_answer: ''})
 
+    // Handle change of question form
     const handleQuestionChange = event => {
         const {name, value} = event.target
         setQuestionFormState({
@@ -25,6 +29,7 @@ const QuizForm = () => {
         })
     }
 
+    // Handle removal of a question
     const removeQuestion = event => {
         event.preventDefault();
 
@@ -32,12 +37,13 @@ const QuizForm = () => {
         formState.questions.splice(parseInt(event.target.value), 1);
         setFormState({...formState})
     }
+
+    // Handle addition of a question
     const handleAddQuestion = event => {
         event.preventDefault();
+
         // Retrieve data from form state
         const data = {...questionFormState}
-
-
 
         // Re-format question object
         const question = {
@@ -45,6 +51,8 @@ const QuizForm = () => {
             choices: [],
             correct_answer: ''
         }
+
+        // Push choices into question object
         for (let i = 1; i <=4; i++) {
             question.choices.push(data[`choice_${i}`]);
         }
@@ -61,7 +69,7 @@ const QuizForm = () => {
         setQuestionFormState({question: '',choice_1: '', choice_2: '', choice_3: '', choice_4: '', correct_answer: ''})
     }
 
-
+    // Handle submission of quiz form
     const handleFormSubmit = async event => {
         event.preventDefault();
         if (!formState.questions.length) {

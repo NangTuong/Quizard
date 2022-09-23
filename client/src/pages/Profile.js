@@ -9,13 +9,18 @@ import QuizList from '../components/QuizList';
 
 const Profile = (props) => {
     const { username: userParam } = useParams();
+    
+    // Controls profile page
     const [component, setComponent] = useState('my-quizzes');
+
+    // Get user data
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
       variables: {username: userParam }
    });
-
    const user = data?.me || data?.user || {};
 
+
+   // Handles component change
    const changeComponent = event => {
      const newComponent = event.target.value;
      setComponent(newComponent);
