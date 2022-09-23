@@ -44,10 +44,12 @@ const Profile = (props) => {
             Viewing {userParam ? `${userParam}'s`: 'your'} profile
           </h2>
         </div>
+        {!userParam && (
           <div className='btn-cont'>
             <button className='btn m-10' value='my-quizzes' onClick={changeComponent}>My Quizzes</button>
             <button className='btn m-10' value='quiz-form' onClick={changeComponent}>Create Quiz</button>
           </div>
+        )}
         <div className="">
           <div className="">
             {component === 'quiz-form' ? (
@@ -57,7 +59,7 @@ const Profile = (props) => {
             ):(
               <div>
                 <h2 className="">
-                Your Quizzes
+                {userParam ? `${userParam}'s`: 'Your'} quizzes
                 </h2>
                 <QuizList profile={userParam ? false : true} quizzes={user.quizzes}/>
               </div>
